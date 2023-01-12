@@ -54,7 +54,7 @@ def main(
             continue
         old_cod_level = dataset.get("cod_level")
 
-        if old_cod_level and old_cod_level != new_cod_level:
+        if old_cod_level and old_cod_level == new_cod_level:
             continue
 
         logger.info(f"Updating {dataset['title']}")
