@@ -4,6 +4,8 @@ This script collects the COD level (standard, enhanced) from the ITOS API and up
 
 If there are new datasets that need a cod-level assigned, or if an existing dataset needs to be changed, edit the [environment variables](https://github.com/b-j-mills/hdx-update-cods-level/settings/variables/actions) **COD_STANDARD** and **COD_ENHANCED**. Add HDX dataset names (last part of the url) to the appropriate lists. Datasets ending in "xxx" will not be run and are there as example dataset names.
 
+If the levels on HDX need to be synced with the ITOS API, change the environment variable **SYNC** to "True".
+
 ### Usage
 
 This script can be run two ways.
@@ -24,4 +26,4 @@ For the script to run, you will need to have a file called .hdx_configuration.ym
 
 You will also need to supply the universal .useragents.yml file in your home directory as specified in the parameter *user_agent_config_yaml* passed to facade in run.py. The collector reads the key **hdx-update-cods-level** as specified in the parameter *user_agent_lookup*.
 
-Alternatively, you can set up environment variables: HDX_SITE, HDX_KEY, USER_AGENT, PREPREFIX
+Alternatively, you can set up environment variables: HDX_KEY, USER_AGENT, PREPREFIX
