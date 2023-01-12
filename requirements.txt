@@ -1,0 +1,2 @@
+hdx-python-api~=5.9.5
+requests~=2.28.1
