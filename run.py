@@ -86,6 +86,8 @@ if __name__ == "__main__":
     sync = args.sync
     if sync is None:
         sync = getenv("SYNC")
+    if sync in ["False", "false", "F", "f"]:
+        sync = False
     cod_standard = args.cod_standard
     if cod_standard is None:
         cod_standard = getenv("COD_STANDARD", "")
