@@ -3,7 +3,7 @@
 name: run
 
 on:
-  workflow_dispatch: # add run button in GitHub UI
+  push
 
 jobs:
   run:
