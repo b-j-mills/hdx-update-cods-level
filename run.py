@@ -40,13 +40,15 @@ def main(
         cod_levels = get_cod_levels(configuration["itos_url"], configuration["itos_ps_url"])
 
     for dataset in cod_standard:
+        if dataset[-3:] == "xxx" or dataset == "":
+            continue
         cod_levels[dataset] = "cod-standard"
     for dataset in cod_enhanced:
+        if dataset[-3:] == "xxx" or dataset == "":
+            continue
         cod_levels[dataset] = "cod-enhanced"
 
     for name in cod_levels:
-        if name[-3:] == "xxx":
-            continue
         new_cod_level = cod_levels[name]
         dataset = Dataset.read_from_hdx(name)
         if not dataset:
