@@ -88,8 +88,6 @@ if __name__ == "__main__":
     hdx_url = args.hdx_url
     if hdx_url is None:
         hdx_url = getenv("HDX_URL")
-    if "ahconu" in hdx_url:
-        hdx_key = getenv("HDX_KEY_CUSTOM")
     sync = args.sync
     if sync is None:
         sync = getenv("SYNC")
