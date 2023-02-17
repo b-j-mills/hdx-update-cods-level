@@ -20,8 +20,8 @@ def parse_args():
     parser.add_argument("-hk", "--hdx_key", default=None, help="HDX api key")
     parser.add_argument("-ua", "--user_agent", default=None, help="user agent")
     parser.add_argument("-pp", "--preprefix", default=None, help="preprefix")
-    parser.add_argument("-hs", "--hdx_site", default=None, help="HDX site to use")
-    parser.add_argument("-sy", "--sync", default=None, help="Sync with ITOS system?")
+    parser.add_argument("-hu", "--hdx_url", default=None, help="HDX site to use")
+    parser.add_argument("-sy", "--sync", default=False, help="Sync with ITOS system?")
     parser.add_argument("-cs", "--cod_standard", default=None, help="Which datasets should be standard")
     parser.add_argument("-ce", "--cod_enhanced", default=None, help="Which datasets should be enhanced")
     args = parser.parse_args()
@@ -85,11 +85,14 @@ if __name__ == "__main__":
     preprefix = args.preprefix
     if preprefix is None:
         preprefix = getenv("PREPREFIX")
+    hdx_url = args.hdx_url
+    if hdx_url is None:
+        hdx_url = getenv("HDX_URL")
+    if "ahconu" in hdx_url:
+        hdx_key = getenv("HDX_KEY_CUSTOM")
     sync = args.sync
     if sync is None:
         sync = getenv("SYNC")
-    if sync in ["False", "false", "F", "f"]:
-        sync = False
     cod_standard = args.cod_standard
     if cod_standard is None:
         cod_standard = getenv("COD_STANDARD", "")
@@ -101,7 +104,7 @@ if __name__ == "__main__":
     facade(
         main,
         hdx_key=hdx_key,
-        hdx_site="prod",
+        hdx_url=hdx_url,
         user_agent=user_agent,
         user_agent_config_yaml=join(expanduser("~"), ".useragents.yml"),
         user_agent_lookup=lookup,

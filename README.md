@@ -6,6 +6,8 @@ If there are new datasets that need a cod-level assigned, or if an existing data
 
 If the levels on HDX need to be synced with the ITOS API, change the environment variable **SYNC** to "True".
 
+If this should be run on a specific HDX site, change the environment variable **HDX_URL** to the full url.
+
 ### Usage
 
 This script can be run two ways.

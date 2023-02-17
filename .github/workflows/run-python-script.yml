@@ -21,9 +21,11 @@ jobs:
     - name: Run script
       env:
         HDX_KEY: ${{ secrets.HDX_KEY }}
+        HDX_KEY_CUSTOM: ${{ secrets.HDX_KEY_CUSTOM }}
         USER_AGENT: ${{ secrets.USER_AGENT }}
         PREPREFIX: ${{ secrets.PREPREFIX }}
         SYNC: ${{ secrets.SYNC }}
+        HDX_URL: ${{ vars.HDX_URL }}
         COD_STANDARD: ${{ vars.COD_STANDARD }}
         COD_ENHANCED: ${{ vars.COD_ENHANCED }}
       run: |
