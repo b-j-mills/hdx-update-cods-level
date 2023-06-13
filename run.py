@@ -17,9 +17,6 @@ lookup = "hdx-update-cods-level"
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("-hk", "--hdx_key", default=None, help="HDX api key")
-    parser.add_argument("-ua", "--user_agent", default=None, help="user agent")
-    parser.add_argument("-pp", "--preprefix", default=None, help="preprefix")
     parser.add_argument("-hu", "--hdx_url", default=None, help="HDX site to use")
     parser.add_argument("-sy", "--sync", default=False, help="Sync with ITOS system?")
     parser.add_argument("-cs", "--cod_standard", default=None, help="Which datasets should be standard")
@@ -76,15 +73,6 @@ def main(
 
 if __name__ == "__main__":
     args = parse_args()
-    hdx_key = args.hdx_key
-    if hdx_key is None:
-        hdx_key = getenv("HDX_KEY")
-    user_agent = args.user_agent
-    if user_agent is None:
-        user_agent = getenv("USER_AGENT")
-    preprefix = args.preprefix
-    if preprefix is None:
-        preprefix = getenv("PREPREFIX")
     hdx_url = args.hdx_url
     if hdx_url is None:
         hdx_url = getenv("HDX_URL")
@@ -101,12 +89,8 @@ if __name__ == "__main__":
     cod_enhanced = cod_enhanced.replace(" ", "").split(",")
     facade(
         main,
-        hdx_key=hdx_key,
-        hdx_url=hdx_url,
-        user_agent=user_agent,
         user_agent_config_yaml=join(expanduser("~"), ".useragents.yml"),
         user_agent_lookup=lookup,
-        preprefix=preprefix,
         project_config_yaml=join("config", "project_configuration.yml"),
         sync=sync,
         cod_standard=cod_standard,
