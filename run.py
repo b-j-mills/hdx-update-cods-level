@@ -21,6 +21,7 @@ def parse_args():
     parser.add_argument("-sy", "--sync", default=False, help="Sync with ITOS system?")
     parser.add_argument("-cs", "--cod_standard", default=None, help="Which datasets should be standard")
     parser.add_argument("-ce", "--cod_enhanced", default=None, help="Which datasets should be enhanced")
+    parser.add_argument("-nc", "--not_cod", default=None, help="Which datasets should not be CODs")
     args = parser.parse_args()
     return args
 
@@ -29,6 +30,7 @@ def main(
     sync,
     cod_standard,
     cod_enhanced,
+    not_cod,
     **ignore,
 ):
     configuration = Configuration.read()
@@ -44,6 +46,10 @@ def main(
         if dataset[-3:] == "xxx" or dataset == "":
             continue
         cod_levels[dataset] = "cod-enhanced"
+    for dataset in not_cod:
+        if dataset[-3:] == "xxx" or dataset == "":
+            continue
+        cod_levels[dataset] = ""
 
     for name in cod_levels:
         new_cod_level = cod_levels[name]
@@ -87,6 +93,10 @@ if __name__ == "__main__":
     if cod_enhanced is None:
         cod_enhanced = getenv("COD_ENHANCED", "")
     cod_enhanced = cod_enhanced.replace(" ", "").split(",")
+    not_cod = args.not_cod
+    if not_cod is None:
+        not_cod = getenv("NOT_COD", "")
+    not_cod = not_cod.replace(" ", "").split(",")
     facade(
         main,
         user_agent_config_yaml=join(expanduser("~"), ".useragents.yml"),
@@ -95,4 +105,5 @@ if __name__ == "__main__":
         sync=sync,
         cod_standard=cod_standard,
         cod_enhanced=cod_enhanced,
+        not_cod=not_cod,
     )
