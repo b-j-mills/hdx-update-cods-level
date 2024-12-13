@@ -27,5 +27,6 @@ jobs:
         HDX_URL: ${{ vars.HDX_URL }}
         COD_STANDARD: ${{ vars.COD_STANDARD }}
         COD_ENHANCED: ${{ vars.COD_ENHANCED }}
+        NOT_COD: ${{ vars.NOT_COD }}
       run: |
         python run.py
