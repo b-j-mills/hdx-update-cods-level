@@ -64,6 +64,10 @@ def main(
 
         logger.info(f"Updating {dataset['title']}")
         dataset["cod_level"] = new_cod_level
+        if "extras" in dataset:
+            keys_to_delete = ["extras"]
+        else:
+            keys_to_delete = []
         try:
             dataset.update_in_hdx(
                 update_resources=False,
@@ -72,6 +76,7 @@ def main(
                 batch_mode="KEEP_OLD",
                 skip_validation=True,
                 ignore_check=True,
+                keys_to_delete=keys_to_delete,
             )
         except HDXError:
             logger.exception(f"Could not update {dataset['name']}")
